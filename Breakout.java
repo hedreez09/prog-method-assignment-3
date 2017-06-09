@@ -71,7 +71,7 @@ public class Breakout extends GraphicsProgram {
 			//createBall();
 		  	//createPaddle();
 		}
-		private void createBrick(double bry, double brx){
+		private void createBrick(double brx, double bry){
 			for(int row = 0;row < NBRICK_ROWS; row++){
 			for(int column = 0; column < NBRICKS_PER_ROW; column++){
 				double y = bry +(BRICK_HEIGHT + BRICK_SEP)*row;
