@@ -1,5 +1,5 @@
 /*
- * File: Breakout.java
+  * File: Breakout.java
  * -------------------
  * Name:
  * Section Leader:
@@ -59,7 +59,33 @@ public class Breakout extends GraphicsProgram {
 
 /* Method: run() */
 /** Runs the Breakout program. */
+	 
+	
 	public void run() {
+		buildGame();
+		
+	}
+		private void buildGame(){
+			setSize(WIDTH,HEIGHT);
+			createBrick(0,BRICK_Y_OFFSET);
+			//createBall();
+		  	//createPaddle();
+		}
+		private void createBrick(double bry, double brx){
+			for(int row = 0;row < NBRICK_ROWS; row++){
+			for(int column = 0; column < NBRICKS_PER_ROW; column++){
+				double y = bry +(BRICK_HEIGHT + BRICK_SEP)*row;
+				double x = brx +(BRICK_WIDTH + BRICK_SEP)*column;
+				GRect brick = new GRect(x,y,BRICK_WIDTH,BRICK_HEIGHT);
+				add(brick);
+				
+				
+				
+			
+				
+			}
+			}
+		}
 		/* You fill this in, along with any subsidiary methods */
 	}
 
