@@ -78,7 +78,18 @@ public class Breakout extends GraphicsProgram {
 				double x = brx +(BRICK_WIDTH + BRICK_SEP)*column;
 				GRect brick = new GRect(x,y,BRICK_WIDTH,BRICK_HEIGHT);
 				add(brick);
+			
 				
+				
+				switch (row){
+				case 1:brick.setColor(Color.RED);break;
+				case 2:brick.setColor(Color.RED);break;
+				case 3:brick.setColor(Color.RED);break;
+				case 4:brick.setColor(Color.RED);break;
+				case 5:brick.setColor(Color.RED);break;
+				default: brick.setColor(Color.ORANGE);break;
+				
+				}
 				
 				
 			
