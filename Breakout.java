@@ -68,7 +68,7 @@ public class Breakout extends GraphicsProgram {
 		private void buildGame(){
 			setSize(WIDTH,HEIGHT);
 			createBrick(0,BRICK_Y_OFFSET);
-			//createBall();
+			createBall();
 		  	//createPaddle();
 		}
 		private void createBrick(double brx, double bry){
@@ -95,11 +95,19 @@ public class Breakout extends GraphicsProgram {
 				brick.setFilled(true);
 				add(brick);
 			
-			
-			}
-			}
-		}
-		/* You fill this in, along with any subsidiary methods */
-	}
 
+		}	
+		}
+			}
+		
+		/* You fill this in, along with any subsidiary methods */
+
+	private void createBall(){
+		GOval ball = new GOval(WIDTH/2-BALL_RADIUS,HEIGHT/2-BALL_RADIUS,BALL_RADIUS,BALL_RADIUS);
+		ball.setColor(Color.BLACK);
+		ball.setFilled(true);
+		add(ball);
+		
+	}
+}
 
