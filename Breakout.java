@@ -80,7 +80,8 @@ public class Breakout extends GraphicsProgram {
 				add(brick);
 			
 				
-				
+				brick.setFillColor(Color.RED);
+				brick.setFilled(true);
 				switch (row){
 				case 1:brick.setColor(Color.RED);break;
 				case 2:brick.setColor(Color.RED);break;
