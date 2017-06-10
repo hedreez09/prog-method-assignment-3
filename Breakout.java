@@ -107,11 +107,13 @@ public class Breakout extends GraphicsProgram {
 		add(ball);
 	}
 	private void createPaddle(){
-		GRect paddle = new GRect(PADDLE_WIDTH,PADDLE_HEIGHT);
+		GRect paddle = new GRect((getWidth()-PADDLE_WIDTH)/2,(getHeight()-PADDLE_Y_OFFSET-PADDLE_HEIGHT),PADDLE_WIDTH,PADDLE_HEIGHT);
 		paddle.setColor(Color.BLACK);
 		paddle.setFillColor(Color.BLACK);
 		paddle.setFilled(true);
 		add(paddle);
+		
+		
 	}
 	
 }
