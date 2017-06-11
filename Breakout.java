@@ -69,7 +69,7 @@ public class Breakout extends GraphicsProgram {
 			setSize(WIDTH,HEIGHT);
 			createBrick(0,BRICK_Y_OFFSET);
 			createBall();
-		  	//createPaddle();
+		  	createPaddle();
 		}
 		private void createBrick(double brx, double bry){
 			for(int row = 0;row < NBRICK_ROWS; row++){
