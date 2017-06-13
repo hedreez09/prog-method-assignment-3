@@ -125,5 +125,6 @@ public void mouseMoved(MouseEvent e){
     if (paddle.getX() <= 0) paddle.setLocation(0, paddle.getY());
     if (paddle.getX() + PADDLE_WIDTH >= getWidth()) paddle.setLocation(getWidth() - PADDLE_WIDTH, paddle.getY());
 }
+
 }
 
