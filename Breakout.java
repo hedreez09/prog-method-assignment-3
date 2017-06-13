@@ -63,9 +63,8 @@ public class Breakout extends GraphicsProgram {
 	 
 	
 	public void run() {
-		addMouseListeners();
 		buildGame();
-		
+		//playGame();
 	}
 		private void buildGame(){
 			setSize(WIDTH,HEIGHT);
@@ -116,7 +115,7 @@ public class Breakout extends GraphicsProgram {
 		paddle.setFillColor(Color.BLACK);
 		paddle.setFilled(true);
 		add(paddle);
-		
+		addMouseListeners();
 		}
 
 // makes paddle move
