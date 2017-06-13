@@ -64,8 +64,6 @@ public class Breakout extends GraphicsProgram {
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 /* Method: run() */
 /** Runs the Breakout program. */
-	 
-	
 	public void run() {
 		for (int i = 0; i < NTURNS; i++){
 		buildGame();
