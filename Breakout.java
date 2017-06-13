@@ -56,16 +56,33 @@ public class Breakout extends GraphicsProgram {
 
 /** Number of turns */
 	private static final int NTURNS = 3;
-
+	private int brickCounter = 100;
 	private GRect paddle;
+	private double vx, vy;
+	private GOval ball;
+	private static final int DELAY = 20;
+	private RandomGenerator rgen = RandomGenerator.getInstance();
 /* Method: run() */
 /** Runs the Breakout program. */
 	 
 	
 	public void run() {
+		for (int i = 0; i < NTURNS; i++){
 		buildGame();
-		//playGame();
-	}
+		playGame();
+		if (brickCounter == 0){
+			ball.setVisible(false);
+			printWinner();
+			break;
+		}
+		if(brickCounter > 0){
+			removeAll();
+		}
+		}
+		if(brickCounter > 0){
+			printGameOver();
+		}
+		}
 		private void buildGame(){
 			setSize(WIDTH,HEIGHT);
 			createBrick(0,BRICK_Y_OFFSET);
@@ -104,7 +121,7 @@ public class Breakout extends GraphicsProgram {
 		/* You fill this in, along with any subsidiary methods */
 
 	private void createBall(){
-		GOval ball = new GOval(WIDTH/2-BALL_RADIUS,HEIGHT/2-BALL_RADIUS,BALL_RADIUS,BALL_RADIUS);
+		ball = new GOval(WIDTH/2-BALL_RADIUS,HEIGHT/2-BALL_RADIUS,BALL_RADIUS,BALL_RADIUS);
 		ball.setColor(Color.BLACK);
 		ball.setFilled(true);
 		add(ball);
@@ -124,6 +141,90 @@ public void mouseMoved(MouseEvent e){
     if (paddle.getX() <= 0) paddle.setLocation(0, paddle.getY());
     if (paddle.getX() + PADDLE_WIDTH >= getWidth()) paddle.setLocation(getWidth() - PADDLE_WIDTH, paddle.getY());
 }
+private void playGame(){
+		waitForClick();
+		getBallVelocity();
+		while (true){
+			moveBall();
+			if (ball.getY() >= getHeight()){
+				break;
+			}
+			if (brickCounter == 0){
+				break;
+			}
+		}
+	}
+
+	private void getBallVelocity(){
+		vy = 4.0;
+		vx = rgen.nextDouble(1.0, 3.0);
+		if (rgen.nextBoolean(0.5)){
+			vx = -vx;
+		}
+	}
+	
+	private void moveBall(){
+		ball.move(vx,  vy);
+		
+	//To check for collision.
+		if ((ball.getX() - vx <= 0 && vx < 0) || (ball.getX() + vx >= (getWidth() - BALL_RADIUS * 2) && vx > 0)){
+		vx = -vx;
+		}
+	
+	if ((ball.getY() - vy <= 0 && vy < 0)){
+		vy = -vy;
+	}
+	//Checking for other objects
+	GObject collider = getCollidingObject();
+	if (collider == paddle){
+		if (ball.getY() >= getHeight() - PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 && ball.getY() < getHeight() -PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 + 4){
+			vy = -vy;
+		}
+	}
+	else if (collider != null){
+		remove(collider);
+		brickCounter--;
+		vy = -vy;
+	}
+	pause(DELAY);
+}
+	private GObject getCollidingObject(){
+		if ((getElementAt(ball.getX(), ball.getY())) != null){
+			return getElementAt(ball.getX(), ball.getY());
+		}
+		else if ((getElementAt((ball.getX() + BALL_RADIUS * 2), ball.getY()) != null)){
+			return (getElementAt((ball.getX() + BALL_RADIUS * 2), ball.getY()));
+		}
+		else if ((getElementAt((ball.getX() + BALL_RADIUS * 2), (ball.getY() + BALL_RADIUS * 2)) != null)){
+			return (getElementAt((ball.getX() + BALL_RADIUS * 2), ball.getY() + BALL_RADIUS * 2));
+		}
+		else if ((getElementAt((ball.getX()), (ball.getY() + BALL_RADIUS * 2)) != null)){
+			return (getElementAt((ball.getX()), ball.getY() + BALL_RADIUS * 2));
+		}
+		else{
+			return null;
+		}
+	}
+	
+/* */
+	private void printGameOver(){
+		GLabel label = new GLabel(" GAME OVER ", getWidth() / 2, getHeight() / 2);
+		label.move(-label.getWidth()/2, -label.getHeight());
+		label.setColor(Color.RED);
+		add(label);
+		
+	}
+	
+	/* */
+	private void printWinner(){
+		GLabel label = new GLabel(" YOU WON!!! ", getWidth() / 2, getHeight() / 2);
+		label.move(-label.getWidth() / 2, label.getHeight());
+		label.setColor(Color.RED);
+		add(label);
+		
+	}
+
+
 
 }
 
