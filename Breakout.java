@@ -205,26 +205,22 @@ private void playGame(){
 			return null;
 		}
 	}
-	
+	//This method display the Game Over message once the turn has elapse
 /* */
 	private void printGameOver(){
 		GLabel label = new GLabel(" GAME OVER ", getWidth() / 2, getHeight() / 2);
 		label.move(-label.getWidth()/2, -label.getHeight());
-		label.setColor(Color.RED);
+		label.setColor(Color.CYAN);
 		add(label);
 		
 	}
-	
+	//this method display you win message once all the bricks had been broken
 	/* */
 	private void printWinner(){
 		GLabel label = new GLabel(" YOU WON!!! ", getWidth() / 2, getHeight() / 2);
 		label.move(-label.getWidth() / 2, label.getHeight());
 		label.setColor(Color.RED);
-		add(label);
-		
+		add(label);	
 	}
-
-
-
 }
 
